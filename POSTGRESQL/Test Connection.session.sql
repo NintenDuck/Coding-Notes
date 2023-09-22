@@ -60,6 +60,11 @@ SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth HAVING C
 
 -- 'LIKE' e 'ILIKE'
 -- BUSCA DEACUERDO A PARAMETROS
-SELECT * FROM person WHERE email LIKE '%@google%'
-SELECT * FROM person WHERE email LIKE '_____d%@gmail%'      -- '_' ES PARA CONTAR ESPACIOS
-SELECT * FROM person WHERE email ILIKE '%@google%'          -- 'ILIKE' FUNCIONA IGUAL, PERO IGNORA 'CASES'
+SELECT * FROM person WHERE email LIKE '%@google%';
+SELECT * FROM person WHERE email LIKE '_____d%@gmail%';      -- '_' ES PARA CONTAR ESPACIOS
+SELECT * FROM person WHERE email ILIKE '%@google%';          -- 'ILIKE' FUNCIONA IGUAL, PERO IGNORA 'CASES'
+
+-- AVG, MIN, MAX, COUNT
+-- SON PARA OBTENER EL VALOR MINIMO O MAXIMO, MEDIA Y LA CANTIDAD DE UN CIERTO GRUPO
+-- DE CIERTOS NUMEROS
+SELECT model, make, MAX(price) FROM car GROUP BY model,make;
