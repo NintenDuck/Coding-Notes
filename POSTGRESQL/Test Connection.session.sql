@@ -83,3 +83,9 @@ FROM person;                                                -- EN ESTE CASO, AL 
 -- SI EL PRIMER PARAMETRO ES IGUAL AL SEGUNDO
 SELECT 10 / NULLIF(2,9);                                    -- 'NULLIF' RETORNA 2, PUES EL SEGUNDO NUMERO NO ES IGUAL AL PRIMERO
 SELECT COALESCE(10 / NULLIF(0,0), 1);                       -- COMO EL RESULTADO ES NULL, COALESCE DA UN NUMERO POR DEFECTO
+
+-- 'NOW'
+-- FUNCION PARA MOSTRAR LA FECHA Y HORA ACTUAL DEL SERVIDOR
+SELECT NOW()                                                -- MOSTRARA FECHA Y HORA
+SELECT NOW::DATE;                                           -- MOSTRARA SOLO LA FECHA
+SELECT NOW()::TIME;                                         -- MOSTRARA SOLO LA HORA
