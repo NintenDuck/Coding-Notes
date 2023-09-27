@@ -152,3 +152,44 @@ UPDATE person SET email='andrecked507@gmail.com@answers.com' WHERE id=1;
 INSERT INTO person(id,first_name,last_name,gender,email,date_of_birth,country_of_birth)
 VALUES(5,'Lorem','Ipsum','Male','something@gmail.com',DATE '2021-06-01','France')			-- 		EN ESTE CASO, EL ID ESTA REPETIDO
 ON CONFLICT(id) DO NOTHING;																	-- <-- 	POR LO QUE NO SE HARA NADA
+
+-- 'DO UPDATE SET'
+-- EN CASO DE CONFLICTO, SE LE DICE QUE ACTUALICE AQUEL(AQUELLOS)
+-- CAMPOS QUE TENGAN CONFLICTO CON NUEVA INFORMACION
+INSERT INTO person (id, first_name, last_name, gender, email, date_of_birth, country_of_birth)
+VALUES (5,'Kilian', 'Lorking', 'Male', 'something@zdnet.com', DATE '2022-12-02', 'United States')
+ON CONFLICT (id) DO UPDATE SET email=EXCLUDED.email;										-- EN CONFLICTO, CAMBIA EL EMAIL
+
+-- 'FOREIGN KEY'
+-- AÑADIMOS LLAVES FORANEAS PARA RELACIONAR TABLAS
+CREATE TABLE person(
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	gender VARCHAR(7) NOT NULL,
+	email VARCHAR(100),
+	date_of_birth DATE NOT NULL,
+	country_of_birth VARCHAR(50) NOT NULL,
+	car_id BIGINT REFERENCES car (id) UNIQUE 												-- <-- UNA PERSONA TIENE CERO O MAS DE UN AUTO
+);
+
+-- 'UPDATE'
+-- ACTUALIZA INFORMACION DE CAMPOS EN ESPECIFICO
+UPDATE person SET car_id=1 WHERE id=2;
+
+-- 'INNER JOINS'
+-- COMBINA TABLAS QUE CUMPLAN LOS REQUISITSO
+SELECT first_name, car.make FROM person
+JOIN car ON person.car_id = car.id;
+
+-- 'LEFT JOINS'
+-- COMBINA CUALQUIER TABLA
+-- CUMPLA LOS REQUISITOS O NO
+SELECT first_name, car.make FROM person
+LEFT JOIN car ON person.car_id = car.id;
+
+-- DELETE RECORDS WITH FOREIGN KEYS
+-- { UPDATE person.car_id TO NULL, AND THEN DELETE THE FOREIGN KEY TABLE COLUMN (OR YOU CAN UPDATE THE person.fkey TO OTHER CAR OR null) }
+
+-- EXPORT TO CSV
+\copy ( SELECT * FROM person ) TO '{RUTA DONDE GUARDAR}' DELIMITER ',' CSV HEADER;
