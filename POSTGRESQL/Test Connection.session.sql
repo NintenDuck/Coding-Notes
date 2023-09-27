@@ -146,3 +146,9 @@ ALTER TABLE person ADD CONSTRAINT gender_constraint CHECK(gender = 'Female' OR g
 -- 'UPDATE'
 -- ACTUALIZA LOS VALORES DE UNA ENTRADA
 UPDATE person SET email='andrecked507@gmail.com@answers.com' WHERE id=1;
+
+-- 'ON CONFLICT () DO {SOMETHING}'
+-- EN CASO DE CONFLICTO HAZ 'XYZ'
+INSERT INTO person(id,first_name,last_name,gender,email,date_of_birth,country_of_birth)
+VALUES(5,'Lorem','Ipsum','Male','something@gmail.com',DATE '2021-06-01','France')			-- 		EN ESTE CASO, EL ID ESTA REPETIDO
+ON CONFLICT(id) DO NOTHING;																	-- <-- 	POR LO QUE NO SE HARA NADA
