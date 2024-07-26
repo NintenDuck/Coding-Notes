@@ -210,3 +210,7 @@ SELECT uuid_generate_v4();
 SELECT * FROM person_id_seq;
 -- El llamar a esta funcion hace que el 'ID' avance +1
 SELECT nextval('person_id_seq'::regclass);
+
+-- ALTERAR 'SEQUENCE'
+-- Resetea el valor de la sequencia a un valor especificado
+ALTER SEQUENCE person_id_seq RESTART WITH 10;
