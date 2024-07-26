@@ -220,3 +220,18 @@ ALTER SEQUENCE person_id_seq RESTART WITH 10;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Se llama a esta funcion para crear un identificador unico
 SELECT uuid_generate_v4();
+
+-- UUID as PRIMARY KEYs
+CREATE TABLE persona (
+	-- Aqui el tipo de dato sera 'UUID'
+	person_uuid UUID NOT NULL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	-- Las llaves primarias tambien cambian
+	-- al tipo de dato adecuado
+	car_uid UUID REFERENCES car(car_uid)
+);
+
+CREATE TABLE car (
+	car_uid UUID NOT NULL PRIMARY KEY,
+	price VARCHAR(100) NOT NULL
+);
