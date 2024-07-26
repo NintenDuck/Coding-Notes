@@ -214,3 +214,9 @@ SELECT nextval('person_id_seq'::regclass);
 -- ALTERAR 'SEQUENCE'
 -- Resetea el valor de la sequencia a un valor especificado
 ALTER SEQUENCE person_id_seq RESTART WITH 10;
+
+-- UUID
+-- Numero aleatorio como identificador unico
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Se llama a esta funcion para crear un identificador unico
+SELECT uuid_generate_v4();
