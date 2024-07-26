@@ -204,3 +204,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- 'CALL FUNCTIONS'
 SELECT uuid_generate_v4();
+
+-- BIGSERIAL y SEQUENCES
+-- Esto muestra la secuencia actual del 'ID'
+SELECT * FROM person_id_seq;
+-- El llamar a esta funcion hace que el 'ID' avance +1
+SELECT nextval('person_id_seq'::regclass);
